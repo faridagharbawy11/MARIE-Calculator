@@ -1,0 +1,124 @@
+Input 
+Store Sign
+
+Plus, Load Sign
+Subt PlusSign 
+SkipCond 400
+Jump subtract
+Jns PlusCode
+Load Sum
+Output
+Jump End
+
+PlusCode, hex 0
+Input 
+Store A
+Input 
+Store B
+Load A
+Add B
+Store Sum
+jumpI PlusCode
+
+
+subtract, Load Sign
+Subt SubtSign 
+SkipCond 400
+Jump multiply
+Jns subtCode
+Load Sum
+Output
+Jump End
+
+subtCode, hex 0
+Input 
+Store A
+Input 
+Store B
+Load A
+subt B
+Store Sum
+jumpI subtCode
+
+
+multiply, Load Sign
+Subt MultiSign 
+SkipCond 400
+Jump division
+Input 
+Store A
+Input 
+Store B
+Jns multiCode
+Load Sum
+output 
+Jump End 
+
+multiCode, hex 0
+Clear
+Store Sum
+load B
+store cntr
+Loop, load Sum
+Add A
+Store Sum
+Load cntr
+Subt one 
+Store cntr
+SkipCond 400
+Jump Loop
+JumpI multiCode
+
+
+division, Load Sign
+Subt DivSign 
+SkipCond 400
+Jump End   / Removed factorial jump
+Input 
+Store A
+Input 
+Store B
+Load Zero
+Store C
+loop, Load A
+Subt B
+Skipcond 000
+Jump Add1
+Jump Display 
+
+Add1, Store A
+Load C
+Add one 
+Store C
+Jump loop
+
+Display, Load C
+Output
+Load A
+Store R
+Load R
+Output
+Jump End
+
+
+End, Halt
+
+A, Dec 0  
+B, Dec 0   
+C, DEc 0   
+R, Dec 0   
+Sum, Dec 0   
+Subt, Dec 0  
+Multi, Dec 0   
+Sign, Dec 0  
+cntr, Dec 0  
+one, Dec 1    
+Div, Dec 0   
+Zero, Dec 0             
+
+
+
+PlusSign, HEX 2B  
+SubtSign, HEX 2D  
+MultiSign, HEX 2A  
+DivSign, HEX 2F  
